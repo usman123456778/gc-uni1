@@ -1,0 +1,954 @@
+/* === CSS Variables === */
+:root {
+  --gcu-maroon: #800000;
+  --gcu-maroon-rgb: 128, 0, 0;
+  --gcu-maroon-dark: #660000;
+  --gcu-gold: #ffd700;
+  --gcu-gold-rgb: 255, 215, 0;
+  --gcu-gold-dark: #e6c300;
+  --gcu-dark-blue: #003366;
+  --gcu-text-dark: #212529;
+  --gcu-text-dark-rgb: 33, 37, 41; /* For auth card background */
+  --gcu-text-light: #f8f9fa;
+  --gcu-text-muted: #6c757d;
+  --gcu-bg-light: #f8f9fa;
+  --gcu-bg-medium: #e9ecef;
+  --gcu-bg-dark: #343a40;
+  --gcu-border-color: #dee2e6;
+  --white: #ffffff;
+  --black: #000000;
+  --success-color: #28a745;
+  --success-color-rgb: 40, 167, 69;
+
+
+  --font-family-sans-serif: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-serif: Georgia, "Times New Roman", Times, serif;
+  --font-heading: var(--font-family-serif);
+  --font-body: var(--font-family-sans-serif);
+
+  --transition-fast: 0.2s ease-in-out;
+  --transition-main: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+}
+
+/* === Basic Reset & Global Styles === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  color: var(--gcu-text-dark);
+  line-height: 1.7;
+  background-color: var(--white);
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--gcu-maroon);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+
+section {
+  padding: 70px 0; /* Unified padding */
+  overflow: hidden;
+}
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px; /* Increased margin */
+  font-size: clamp(2rem, 5vw, 2.8rem); /* Responsive font size */
+  position: relative;
+  padding-bottom: 20px; /* Increased padding */
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 80px; /* Wider line */
+  height: 4px; /* Thicker line */
+  background: var(--gcu-gold);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+.section-subheading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  color: var(--gcu-text-muted);
+  font-size: 1.1rem;
+}
+
+a {
+  color: var(--gcu-maroon);
+  text-decoration: none;
+  transition: color var(--transition-main);
+}
+a:hover {
+  color: var(--gcu-maroon-dark);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 0.65rem 1.5rem; /* Slightly adjusted padding */
+  border-radius: 50px;
+  font-weight: 600; /* Bolder */
+  transition: all var(--transition-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+}
+.btn:hover {
+  transform: translateY(-3px) scale(1.03); /* Added scale */
+  box-shadow: var(--shadow-md);
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-gcu-primary {
+  background-color: var(--gcu-maroon);
+  border-color: var(--gcu-maroon);
+  color: var(--gcu-text-light);
+}
+.btn-gcu-primary:hover {
+  background-color: var(--gcu-maroon-dark);
+  border-color: var(--gcu-maroon-dark);
+  color: var(--gcu-text-light);
+}
+.btn-gcu-secondary { /* For job buttons */
+  background-color: var(--gcu-gold);
+  border-color: var(--gcu-gold);
+  color: var(--gcu-text-dark);
+}
+.btn-gcu-secondary:hover {
+  background-color: var(--gcu-gold-dark);
+  border-color: var(--gcu-gold-dark);
+  color: var(--gcu-text-dark);
+}
+
+.btn-outline-gcu-maroon {
+  color: var(--gcu-maroon);
+  border-color: var(--gcu-maroon);
+}
+.btn-outline-gcu-maroon:hover {
+  background-color: var(--gcu-maroon);
+  color: var(--gcu-text-light);
+}
+
+.btn-outline-light-gold { /* Used in hero-admissions */
+  color: var(--gcu-gold);
+  border-color: var(--gcu-gold);
+}
+.btn-outline-light-gold:hover {
+  background-color: var(--gcu-gold);
+  color: var(--gcu-maroon);
+}
+
+
+/* === Navbar === */
+.navbar {
+  transition: background-color var(--transition-main), box-shadow var(--transition-main);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.navbar-brand img {
+  max-height: 45px;
+}
+.navbar .nav-link {
+  font-weight: 500;
+  padding: 0.75rem 1rem !important;
+  transition: color var(--transition-main);
+  position: relative;
+  font-size: 0.95rem;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--gcu-maroon) !important;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 5px;
+  left: 50%;
+  background-color: var(--gcu-gold);
+  transition: all var(--transition-main);
+  transform: translateX(-50%);
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 60%; /* Slightly wider underline */
+}
+.nav-item .btn-gcu-primary { /* Apply Online button */
+  margin-left: 0.5rem;
+  padding: 0.5rem 1.25rem; /* Specific padding if needed */
+}
+
+/* === Hero Sections === */
+.hero-page-header { /* General for about, deadlines, programs */
+  height: 55vh; /* Slightly reduced */
+  min-height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--gcu-text-light);
+  background-size: cover;
+  background-position: center;
+}
+.hero-page-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.65); /* Slightly darker overlay */
+  z-index: 1;
+}
+.hero-page-header .container {
+  position: relative;
+  z-index: 2;
+}
+.hero-page-header h1 {
+  color: var(--gcu-text-light);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* index.html Hero (Admissions Home) */
+#hero-admissions {
+  min-height: 80vh;
+  position: relative;
+  background: url("students-group-study-free-photo.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 100px 0;
+  background-attachment: fixed; /* Parallax effect */
+}
+#hero-admissions::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(var(--gcu-maroon-rgb), 0.75), rgba(0, 0, 0, 0.85));
+  z-index: 1;
+}
+#hero-admissions .container { position: relative; z-index: 2; }
+#hero-admissions h1 { color: var(--gcu-gold); }
+#hero-admissions p.lead { color: var(--gcu-text-light); opacity: 0.95; }
+
+/* home.html Hero Carousel */
+#hero-carousel .carousel-item {
+  height: 85vh; /* Slightly taller */
+  min-height: 480px;
+  position: relative;
+}
+#hero-carousel .carousel-img {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+#hero-carousel::before { /* Dark overlay for better text visibility */
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75));
+  z-index: 1;
+}
+#hero-carousel .carousel-caption {
+  z-index: 2;
+  bottom: 12%; /* Adjusted position */
+  background: rgba(var(--gcu-maroon-rgb), 0.75);
+  padding: 25px 35px; /* Increased padding */
+  border-radius: var(--border-radius-md);
+  max-width: 65%; /* Adjusted width */
+  margin: auto;
+}
+#hero-carousel .carousel-caption h5 { color: var(--gcu-gold); font-size: clamp(1.5rem, 3vw, 2rem); }
+#hero-carousel .carousel-indicators button {
+  width: 12px; height: 12px; /* Larger indicators */
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255,255,255,0.7);
+  margin: 0 7px;
+}
+#hero-carousel .carousel-indicators .active { background-color: var(--gcu-gold); border-color: var(--gcu-gold); }
+
+
+/* === Card Styles & Hover Effects === */
+.card {
+  border: none;
+  border-radius: var(--border-radius-md);
+  transition: transform var(--transition-main), box-shadow var(--transition-main);
+  height: 100%; 
+  background-color: var(--white); /* Ensure background for cards on colored sections */
+}
+.card:hover {
+  transform: translateY(-10px); /* More lift */
+  box-shadow: var(--shadow-lg) !important;
+}
+.card .card-title { color: var(--gcu-maroon); margin-bottom: 0.5rem; }
+.card .btn-sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem; /* Adjusted padding */
+}
+
+/* Quick Info Cards (index.html) */
+.quick-info-card .card-icon-animated {
+    transition: transform var(--transition-main);
+}
+.quick-info-card:hover .card-icon-animated {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Why GCU Item (index.html & programs.html) */
+.why-gcu-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-main), box-shadow var(--transition-main);
+    display: flex; /* For vertical centering if needed */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+.why-gcu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+.why-gcu-item i { transition: transform var(--transition-slow); }
+.why-gcu-item:hover i { transform: scale(1.1) rotateY(180deg); }
+
+
+/* === about.html (Jobs Page) Specific Styles === */
+.job-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+/* .job-buttons a is now .btn-gcu-secondary */
+.job-info {
+  background: var(--gcu-bg-medium);
+  padding: 25px; /* Increased padding */
+  border-radius: var(--border-radius-md);
+  margin: 30px auto;
+  max-width: 800px;
+  border-left: 5px solid var(--gcu-maroon);
+  box-shadow: var(--shadow-sm);
+}
+.office-card { overflow: hidden; }
+.office-card img { transition: transform var(--transition-slow), filter var(--transition-slow); }
+.office-card:hover img { transform: scale(1.08); filter: brightness(1.1); }
+.office-card .btn-sm:hover { background-color: var(--gcu-maroon); color: var(--white); }
+
+/* === Deadlines Page Table === */
+.table-deadlines thead {
+    background-color: var(--gcu-maroon);
+    color: var(--gcu-text-light);
+}
+.table-deadlines tbody tr:hover {
+    background-color: rgba(var(--gcu-gold-rgb), 0.15);
+}
+
+
+/* === Testimonials Section (index.html) === */
+#testimonials .carousel-item {
+  padding: 30px 40px; /* Adjusted padding */
+  background-color: var(--gcu-bg-light);
+  border-radius: var(--border-radius-lg); /* Larger radius */
+  min-height: 300px; /* Ensure consistent height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#testimonials .testimonial-img {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px; /* Increased margin */
+  border: 4px solid var(--gcu-gold); /* Thicker border */
+  box-shadow: var(--shadow-sm);
+}
+#testimonials .carousel-control-prev-icon,
+#testimonials .carousel-control-next-icon {
+  background-color: var(--gcu-maroon);
+  border-radius: 50%;
+  padding: 12px; /* Slightly larger */
+  background-size: 50%; /* Adjust icon size */
+}
+#testimonials .carousel-control-prev, #testimonials .carousel-control-next {
+    width: 5%; /* Adjust control width */
+}
+
+
+/* === Upcoming Events Section (index.html) === */
+#upcoming-events .event-card {
+  border-left: 5px solid var(--gcu-gold);
+}
+#upcoming-events .event-card img {
+    height: 200px;
+    object-fit: cover;
+}
+#upcoming-events .event-date {
+  font-weight: 600;
+  color: var(--gcu-maroon);
+  font-size: 0.9rem;
+}
+
+
+/* === Animated Stats Counter (index.html) === */
+.stats-counter-section { background-color: var(--gcu-bg-medium); }
+.stat-item { text-align: center; }
+.stat-item i { transition: transform var(--transition-main); }
+.stat-item:hover i { transform: scale(1.15) translateY(-5px); color: var(--gcu-maroon-dark); }
+.stat-item .counter {
+  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Responsive font size */
+  font-weight: 700;
+  color: var(--gcu-maroon);
+}
+.stat-item p { color: var(--gcu-text-muted); font-size: 1rem; }
+
+
+/* === Home Page Sections === */
+/* Notice Board & VC Message */
+.notice-board-list .list-group-item-action {
+    transition: background-color var(--transition-fast), transform var(--transition-fast), border-left-color var(--transition-fast);
+    border-left: 3px solid transparent;
+}
+.notice-board-list .list-group-item-action:hover {
+    background-color: var(--gcu-bg-medium);
+    transform: translateX(5px);
+    border-left-color: var(--gcu-gold);
+}
+.vc-message-card .vc-photo {
+    max-width: 120px;
+    border: 3px solid var(--gcu-gold);
+}
+
+/* Departments/Faculties (home.html) */
+.department-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+}
+.department-card img {
+  width: 100%; height: 280px; /* Increased height */
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+.department-card .card-overlay {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(var(--gcu-maroon-rgb), 0.95), rgba(var(--gcu-maroon-rgb), 0.2)); /* Stronger gradient */
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 25px; /* Increased padding */
+  color: var(--white);
+  opacity: 0;
+  transition: opacity var(--transition-main);
+}
+.department-card:hover img { transform: scale(1.12); } /* More zoom */
+.department-card:hover .card-overlay { opacity: 1; }
+.department-card .card-overlay h4 { color: var(--gcu-gold); margin-bottom: 0.3rem; }
+.department-card .card-overlay p.small { font-size: 0.85rem; margin-bottom: 0.8rem; }
+
+/* Explore GCU Facilities Cards (home.html) */
+.facilities-card { background-color: var(--gcu-bg-light); } /* If main bg is white */
+.facilities-card .card-img-top-icon i {
+    transition: transform var(--transition-main), color var(--transition-main);
+}
+.facilities-card:hover .card-img-top-icon i {
+    transform: scale(1.25) rotate(12deg); /* More dynamic */
+    color: var(--gcu-gold);
+}
+
+/* Campus Life Gallery (home.html) */
+.campus-gallery .gallery-item-link img {
+  border-radius: var(--border-radius-md); /* Consistent radius */
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-main), box-shadow var(--transition-main), filter var(--transition-main);
+  height: 250px; /* Fixed height for consistency */
+  width: 100%;
+  object-fit: cover;
+}
+.campus-gallery .gallery-item-link:hover img {
+  transform: scale(1.06); /* More zoom */
+  box-shadow: var(--shadow-lg); /* Larger shadow */
+  filter: brightness(1.1);
+}
+
+
+/* === Programs Page === */
+/* Faculty Cards (programs.html) */
+.faculty-card {
+    background-color: var(--white); /* Ensure distinct background */
+}
+.faculty-card .faculty-icon-wrapper i {
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), color var(--transition-main); /* Playful transition */
+}
+.faculty-card:hover .faculty-icon-wrapper i {
+    transform: rotateY(360deg) scale(1.2);
+    color: var(--gcu-gold);
+}
+
+/* Program Filter Buttons (programs.html) */
+.program-filter-buttons .btn {
+    padding: 0.6rem 1.2rem; /* Adjusted padding */
+}
+.program-filter-buttons .btn:not(.active):hover {
+    background-color: var(--gcu-maroon-dark);
+    color: var(--white);
+}
+
+/* Program Item Cards (programs.html) */
+.program-item-card { border-top: 4px solid var(--gcu-gold); } /* Accent */
+.program-level-badge {
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--border-radius-sm);
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+.program-level-badge.undergraduate { background-color: var(--gcu-dark-blue); }
+.program-level-badge.graduate { background-color: var(--gcu-maroon); }
+.program-level-badge.doctoral { background-color: var(--gcu-text-dark); }
+
+/* === Footer === */
+.site-footer { /* Generic for about, deadlines */
+  background: var(--gcu-maroon);
+  color: var(--gcu-text-light);
+  text-align: center;
+  padding: 20px 0; /* Increased padding */
+  font-size: 0.9rem;
+}
+.footer-links { /* Used in about.html, deadlines.html */
+  background: var(--gcu-dark-blue);
+  color: var(--gcu-text-light);
+  padding: 40px 20px; /* Increased padding */
+}
+.footer-links .columns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px; /* Added gap */
+}
+.footer-links div {
+  flex: 1 1 220px; /* Adjusted flex basis */
+  min-width: 200px;
+}
+.footer-links h3 {
+  color: var(--gcu-gold);
+  margin-bottom: 1.2rem; /* Increased margin */
+  font-size: 1.2rem;
+}
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent */
+  text-decoration: none;
+  display: block;
+  margin: 10px 0; /* Increased margin */
+  transition: color var(--transition-main), padding-left var(--transition-main), letter-spacing var(--transition-main);
+}
+.footer-links a:hover {
+  color: var(--white);
+  padding-left: 8px; /* More indent */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+}
+.footer-links p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+.footer-links p i, .footer-links a i {
+    color: var(--gcu-gold); /* Icon color */
+}
+
+
+.main-footer { /* Used for home.html, index.html, programs.html, contact-us-attractive.html */
+  background-color: var(--gcu-text-dark);
+  color: rgba(255, 255, 255, 0.75); /* Brighter text */
+  padding-top: 4rem; /* Increased padding */
+  padding-bottom: 1.5rem;
+}
+.main-footer .footer-heading {
+  color: var(--gcu-text-light);
+  font-weight: 600;
+  border-bottom: 2px solid var(--gcu-gold);
+  display: inline-block;
+  padding-bottom: 8px; /* Increased padding */
+  margin-bottom: 1.5rem !important;
+}
+.main-footer .footer-links li { margin-bottom: 0.75rem; } /* Increased margin */
+.main-footer .footer-links a,
+.main-footer .footer-contact a {
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition-main), padding-left var(--transition-main);
+  display: inline-block;
+}
+.main-footer .footer-links a:hover,
+.main-footer .footer-contact a:hover {
+  color: var(--gcu-gold); /* Hover to gold */
+  padding-left: 5px;
+}
+.main-footer .footer-contact i {
+  width: 22px; /* Slightly wider */
+  text-align: center;
+  margin-right: 0.6rem;
+  color: var(--gcu-gold); /* Icon color */
+}
+.main-footer .social-icons a {
+  color: rgba(255, 255, 255, 0.6); /* Brighter default */
+  margin: 0 0.6rem; /* Adjusted margin */
+  font-size: 1.1rem; /* Larger icons */
+  transition: color var(--transition-main), transform var(--transition-main);
+}
+.main-footer .social-icons a:hover {
+  color: var(--gcu-gold) !important;
+  transform: scale(1.25) rotate(10deg); /* More dynamic */
+}
+.main-footer hr { border-top: 1px solid rgba(255, 255, 255, 0.15); } /* Brighter hr */
+.main-footer .fs-sm { font-size: 0.875rem; } /* Slightly larger */
+
+
+/* === Page Container for Auth & Forms (login, register, application-form) === */
+.auth-page-container,
+.form-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* To position footer at bottom */
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px; /* Reduced top/bottom padding */
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--gcu-maroon), var(--gcu-dark-blue));
+  color: var(--gcu-text-light);
+}
+
+/* Animated Background Bubbles */
+.background-bubbles {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none; /* Ensure bubbles don't interfere with clicks */
+}
+.bubble {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.08); /* More subtle */
+  border-radius: 50%;
+  animation: rise 20s infinite ease-in;
+  opacity: 0;
+}
+@keyframes rise {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  10% { opacity: 0.7; } /* Fade in faster */
+  90% { opacity: 0.7; } /* Hold opacity longer */
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Auth Card & Form Card Styling */
+.auth-card,
+.form-card {
+  position: relative; z-index: 1;
+  background-color: rgba(var(--gcu-text-dark-rgb), 0.85); /* Darker card */
+  backdrop-filter: blur(12px); /* More blur */
+  padding: 35px 45px; /* Adjusted padding */
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35); /* Stronger shadow */
+  max-width: 500px; /* For login/register */
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Brighter border */
+  margin-bottom: auto; /* Pushes card to center if container is flex column */
+  margin-top: auto; /* Added for vertical centering */
+}
+.form-page-container .form-card {
+  max-width: 900px; /* Wider for application form */
+  text-align: left;
+}
+.auth-card-header h2,
+.form-card-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 20px; /* Reduced margin */
+  color: var(--gcu-gold);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Enhanced shadow */
+}
+.auth-card-header p.small {
+    opacity: 0.8;
+}
+
+.form-group-interactive {
+  margin-bottom: 22px; /* Adjusted margin */
+  position: relative;
+}
+.form-group-interactive label {
+  display: block; margin-bottom: 8px;
+  font-weight: 500; color: var(--gcu-text-light);
+  opacity: 0.85; text-align: left;
+  font-size: 0.9rem;
+}
+.form-group-interactive .form-control,
+.form-group-interactive .form-select {
+  width: 100%; padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25); /* Brighter border */
+  border-radius: var(--border-radius-md);
+  background-color: rgba(255, 255, 255, 0.07); /* More subtle bg */
+  color: var(--gcu-text-light); font-size: 1rem;
+  transition: all var(--transition-main);
+  appearance: none;
+}
+.form-group-interactive .form-control::placeholder { color: rgba(255, 255, 255, 0.45); }
+.form-group-interactive .form-control:focus,
+.form-group-interactive .form-select:focus {
+  outline: none;
+  border-color: var(--gcu-gold);
+  background-color: rgba(255, 255, 255, 0.12); /* Brighter focus bg */
+  box-shadow: 0 0 0 3.5px rgba(var(--gcu-gold-rgb), 0.35); /* Stronger glow */
+}
+.form-group-interactive .form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffd700' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat; background-position: right 1rem center;
+  background-size: 16px 12px;
+}
+.form-control.is-invalid {
+    border-color: #dc3545; /* Bootstrap danger color */
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+
+.btn-auth,
+.btn-form-submit {
+  background: linear-gradient(135deg, var(--gcu-gold), var(--gcu-gold-dark));
+  color: var(--gcu-maroon); padding: 12px 30px;
+  width: 100%; border: none;
+  border-radius: 50px; font-weight: 700; /* Bolder */
+  font-size: 1.05rem; /* Slightly smaller */
+  letter-spacing: 0.5px; text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(var(--gcu-gold-rgb), 0.35); /* Adjusted shadow */
+  transition: all var(--transition-main);
+}
+.btn-auth:hover,
+.btn-form-submit:hover {
+  transform: translateY(-4px) scale(1.025); /* More lift */
+  box-shadow: 0 10px 22px rgba(var(--gcu-gold-rgb), 0.45); /* Stronger shadow */
+  filter: brightness(1.12);
+}
+
+.auth-card .extra-links { margin-top: 25px; font-size: 0.9rem; }
+.auth-card .extra-links a { color: var(--gcu-gold); text-decoration: none; opacity: 0.9; }
+.auth-card .extra-links a:hover { opacity: 1; text-decoration: underline; }
+
+/* Application Form Specific */
+.form-section {
+  margin-bottom: 35px; padding-bottom: 25px; /* Adjusted spacing */
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15); /* More subtle border */
+}
+.form-section:last-child { border-bottom: none; margin-bottom: 0; }
+.form-section-title {
+  font-size: 1.4rem; /* Slightly smaller */
+  color: var(--gcu-gold); margin-bottom: 20px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--gcu-gold);
+  display: inline-block;
+}
+.form-navigation-buttons {
+  display: flex; justify-content: space-between;
+  margin-top: 25px; /* Adjusted margin */
+}
+.btn-form-nav {
+  background-color: rgba(255, 255, 255, 0.12); /* More subtle */
+  color: var(--gcu-text-light);
+  padding: 10px 25px;
+  font-weight: 500;
+}
+.btn-form-nav:hover { background-color: rgba(255, 255, 255, 0.22); }
+.btn-form-nav:disabled {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+}
+
+
+/* File Upload Styling */
+.file-upload-wrapper {
+  border: 2px dashed rgba(255, 255, 255, 0.25); /* Brighter dash */
+  padding: 25px; /* Adjusted padding */
+  text-align: center; border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-main), background-color var(--transition-main);
+}
+.file-upload-wrapper:hover {
+  border-color: var(--gcu-gold);
+  background-color: rgba(var(--gcu-gold-rgb), 0.08); /* More subtle gold bg */
+}
+.file-upload-wrapper i {
+  font-size: 2.8rem; /* Slightly smaller */
+  color: var(--gcu-gold); margin-bottom: 12px;
+}
+.file-upload-wrapper p { margin-bottom: 5px; color: var(--gcu-text-light); }
+.file-upload-wrapper .small-text { font-size: 0.8rem; color: rgba(255, 255, 255, 0.65); }
+.uploaded-file-list span {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px; /* Adjusted padding */
+  border-radius: var(--border-radius-sm);
+  margin: 5px; font-size: 0.85rem;
+  color: var(--gcu-text-light);
+}
+
+/* Stepper for Application Form */
+.form-stepper {
+  display: flex; justify-content: space-around;
+  margin-bottom: 35px; padding-bottom: 20px; /* Adjusted spacing */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* More subtle border */
+}
+.step {
+  display: flex; flex-direction: column;
+  align-items: center; color: rgba(255, 255, 255, 0.55); /* Brighter default text */
+  position: relative; flex-grow: 1;
+  transition: color var(--transition-main);
+}
+.step::after { /* Connector line */
+  content: ""; position: absolute;
+  top: 15px; left: 50%;
+  width: 100%; height: 2px;
+  background-color: rgba(255, 255, 255, 0.15); /* More subtle */
+  z-index: -1;
+  transition: background-color var(--transition-main);
+}
+.step:last-child::after { display: none; }
+
+.step-circle {
+  width: 32px; height: 32px; /* Slightly larger */
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15); /* More subtle */
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; margin-bottom: 10px; /* Increased margin */
+  transition: all var(--transition-main);
+  border: 2px solid transparent;
+  position: relative; /* For z-index if needed */
+}
+.step-label { font-size: 0.85rem; text-align: center; } /* Slightly larger */
+
+.step.active .step-circle {
+  background-color: var(--gcu-gold); color: var(--gcu-maroon);
+  border-color: var(--gcu-gold);
+  transform: scale(1.15); /* More pronounced */
+  box-shadow: 0 0 12px rgba(var(--gcu-gold-rgb), 0.55); /* Stronger glow */
+}
+.step.active .step-label { color: var(--gcu-gold); font-weight: 600; } /* Bolder label */
+
+.step.completed .step-circle {
+  background-color: rgba(var(--success-color-rgb), 0.8); /* Slightly transparent success */
+  color: var(--white);
+  border-color: rgba(var(--success-color-rgb),0.9);
+  transform: scale(1.05);
+}
+.step.completed .step-label { color: rgba(255, 255, 255, 0.85); } /* Brighter completed label */
+.step.completed::after { background-color: var(--gcu-gold); } /* Active connector */
+
+/* Footer for Auth/Form Pages */
+.auth-footer {
+    position: relative; z-index: 1; /* Above bubbles */
+    color: rgba(255, 255, 255, 0.75); /* Brighter text */
+    margin-top: 25px; /* Space from card */
+    padding-bottom: 20px; /* Ensure visibility */
+}
+.auth-footer a { color: var(--gcu-gold); text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+
+/* === Responsive Adjustments === */
+@media (max-width: 991.98px) { /* Tablets */
+  .navbar-collapse {
+    background-color: var(--gcu-bg-light);
+    padding: 15px; margin-top: 10px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-md); /* More prominent shadow */
+    border-top: 2px solid var(--gcu-gold); /* Accent border */
+  }
+  .navbar .nav-link::after { display: none; }
+  .hero-page-header h1 { font-size: clamp(2rem, 5vw, 3rem); }
+  #hero-admissions h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
+  #hero-carousel .carousel-item { height: 70vh; min-height: 400px; } /* Adjusted */
+  .footer-links .columns { justify-content: flex-start; }
+  .main-footer .col-md-6 { margin-bottom: 2rem; } /* Increased margin */
+}
+
+@media (max-width: 767.98px) { /* Mobile phones */
+  section { padding: 50px 0; } /* Reduced padding */
+  .section-heading { font-size: clamp(1.8rem, 6vw, 2.2rem); margin-bottom: 35px; }
+  .section-heading::after { width: 60px; height: 3px; }
+
+  #hero-admissions { min-height: 70vh; padding: 80px 0; }
+  #hero-carousel .carousel-item { height: 60vh; min-height: 350px; }
+  #hero-carousel .carousel-caption { max-width: 90%; bottom: 8%; padding: 20px; }
+  #hero-carousel .carousel-caption h5 { font-size: 1.3rem; }
+  #hero-carousel .carousel-caption p { font-size: 0.8rem; margin-bottom: 0.6rem; }
+
+  .job-buttons { flex-direction: column; gap: 12px; }
+  .job-buttons .btn { width: 100%; } /* Full width buttons */
+
+  .auth-card, .form-card { padding: 25px 20px; } /* Adjusted padding for mobile */
+  .auth-card-header h2, .form-card-header h2 { font-size: 1.7rem; } /* Adjusted font */
+  .btn-auth, .btn-form-submit { font-size: 1rem; padding: 11px 25px; } /* Adjusted button */
+
+  .form-stepper {
+    flex-direction: row; /* Keep horizontal on mobile but allow wrap */
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to start */
+    gap: 10px 20px; /* Row and column gap */
+  }
+  .step {
+    flex-direction: column; /* Stack circle and label */
+    align-items: center;
+    flex-grow: 0; /* Don't grow, let them wrap */
+    min-width: 80px; /* Minimum width for each step */
+  }
+  .step::after { display: none; } /* Hide connector lines for wrapped layout */
+  .step-circle { margin-right: 0; margin-bottom: 5px; }
+  .step-label { font-size: 0.75rem; } /* Smaller label for mobile */
+
+  .main-footer .footer-heading { font-size: 1.1rem; }
+  .main-footer .social-icons a { font-size: 1rem; }
+}
+
+@media (max-width: 575.98px) { /* Extra small devices */
+    #hero-admissions .btn-lg { font-size: 0.9rem; padding: 0.5rem 1rem; }
+    .contact-cta-banner .btn-lg { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+    .form-navigation-buttons { flex-direction: column; gap: 10px; }
+    .form-navigation-buttons .btn { width: 100%; }
+}

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+  <!-- اردو کے لیے ڈائریکشن سیٹ کریں -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ہم سے رابطہ کریں - GCU</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- آپ کی مرکزی اسٹائل شیٹ -->
+    <style>
+      /* Contact Us Page Specific Styles */
+      :root {
+        /* ... (آپ کی style.css سے ویری ایبلز یہاں بھی استعمال ہوں گے) ... */
+        --contact-accent-color: var(--gcu-gold);
+        --contact-bg-dark-transparent: rgba(0, 0, 0, 0.7);
+        --contact-text-light: #f0f0f0;
+      }
+
+      .contact-us-page {
+        padding: 0;
+        /* Remove default section padding if full page hero */
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Hero Section for Contact Page */
+      .contact-hero {
+        height: 70vh;
+        /* Adjust as needed */
+        min-height: 400px;
+        background: linear-gradient(rgba(var(--gcu-maroon-rgb, 128, 0, 0), 0.7), rgba(0, 0, 0, 0.8)), url('2025-05-0597073.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+        /* Parallax effect */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+      }
+
+      .contact-hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .contact-hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        color: var(--gcu-gold);
+        font-weight: 700;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-hero p {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Main Contact Content Area */
+      .contact-main-content {
+        padding: 80px 0;
+        background-color: var(--gcu-bg-light);
+        /* Light background for content area */
+      }
+
+      .contact-form-wrapper {
+        background-color: var(--white);
+        padding: 40px;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        border-top: 5px solid var(--gcu-maroon);
+      }
+
+      .contact-form-wrapper h2 {
+        color: var(--gcu-maroon);
+        margin-bottom: 25px;
+        font-size: 2rem;
+      }
+
+      .form-floating>.form-control:focus~label,
+      .form-floating>.form-control:not(:placeholder-shown)~label {
+        opacity: .65;
+        transform: scale(.85) translateY(-.7rem) translateX(.15rem);
+        /* Adjust for RTL */
+        color: var(--gcu-maroon);
+      }
+
+      .form-floating>label {
+        right: 0;
+        /* Adjust for RTL */
+        left: auto;
+        padding-right: 1rem;
+      }
+
+      .form-floating>.form-control {
+        padding: 1rem 1rem 1rem 3.5rem;
+        /* Padding for icon inside input */
+      }
+      .form-floating textarea.form-control {
+        padding: 1rem 1rem 1rem 3.5rem; /* Ensure consistent padding for textarea */
+      }
+
+
+      .input-with-icon {
+        position: relative;
+      }
+
+      .input-with-icon .form-control-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        /* Icon on left for RTL input */
+        right: auto;
+        transform: translateY(-50%);
+        color: var(--gcu-text-muted);
+        pointer-events: none;
+      }
+       .input-with-icon textarea ~ .form-control-icon {
+        top: 25px; /* Adjusted icon position for textarea */
+        transform: translateY(0);
+      }
+
+
+      .form-control:focus+.form-control-icon {
+        color: var(--gcu-maroon);
+      }
+
+      .btn-submit-contact-form {
+        background-color: var(--gcu-maroon);
+        color: var(--white);
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        width: 100%;
+        transition: all var(--transition-main);
+        border: none;
+      }
+
+      .btn-submit-contact-form:hover {
+        background-color: var(--gcu-maroon-dark);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .contact-details-wrapper {
+        padding-left: 30px; /* Space from form on larger screens */
+      }
+      @media (max-width: 991.98px) {
+        .contact-details-wrapper {
+          padding-right: 30px; /* RTL adjustment: was padding-left */
+          padding-left: 0;
+          margin-top: 40px;
+        }
+      }
+
+
+      .contact-details-wrapper h3 {
+        color: var(--gcu-maroon);
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+      }
+
+      .contact-detail-item {
+        display: flex;
+        align-items: flex-start;
+        /* Align icon top with text */
+        margin-bottom: 20px;
+        color: var(--gcu-text-dark);
+      }
+
+      .contact-detail-item i {
+        font-size: 1.5rem;
+        color: var(--gcu-maroon);
+        margin-left: 15px;
+        /* Margin on left for RTL */
+        margin-right: 0;
+        width: 30px;
+        /* Fixed width for alignment */
+        flex-shrink: 0;
+      }
+
+      .contact-detail-item p {
+        margin-bottom: 0;
+        line-height: 1.6;
+      }
+
+      .contact-detail-item a {
+        color: var(--gcu-text-dark);
+        text-decoration: none;
+      }
+
+      .contact-detail-item a:hover {
+        color: var(--gcu-maroon);
+        text-decoration: underline;
+      }
+
+      .social-contact-links {
+        margin-top: 30px;
+      }
+
+      .social-contact-links a {
+        font-size: 1.8rem;
+        color: var(--gcu-maroon);
+        margin: 0 10px;
+        transition: color var(--transition-main), transform var(--transition-main);
+      }
+
+      .social-contact-links a:hover {
+        color: var(--gcu-gold);
+        transform: scale(1.2) rotate(5deg);
+      }
+
+      /* Map Section */
+      .map-section {
+        padding: 0;
+        /* No padding, map takes full width */
+        height: 450px;
+        /* Adjust map height */
+      }
+
+      .map-section iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Animated Background Elements (Subtle) */
+      .contact-bg-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .contact-bg-elements span {
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        background-color: rgba(var(--gcu-gold-rgb, 255, 215, 0), 0.1);
+        /* Subtle gold */
+        animation: floatUp 20s infinite linear;
+        opacity: 0;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+
+        10%,
+        90% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(-10vh) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- Navbar (same as other pages) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="home.html">
+          <img src="gc-logo.png" alt="GCU Logo" height="45">
+          <span class="ms-2 fw-bold">GCU لاہور</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">مرکزی صفحہ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">داخلے</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="programs.html">پروگرامز</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="contact-us-attractive.html">رابطہ کریں</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-gcu-primary text-white ms-lg-2" href="application-form.html">آن لائن اپلائی کریں</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="contact-us-page">
+      <div class="contact-bg-elements">
+        <!-- JS will add elements here -->
+      </div>
+      <section class="contact-hero">
+        <div class="container contact-hero-content">
+          <h1 data-aos="fade-down" data-aos-duration="1000">ہم سے رابطہ کریں</h1>
+          <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">آپ کے سوالات اور رہنمائی کے لیے ہمہ وقت دستیاب ہیں۔</p>
+        </div>
+      </section>
+      <section class="contact-main-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+              <div class="contact-form-wrapper">
+                <h2>اپنا پیغام بھیجیں</h2>
+                <form id="attractiveContactForm">
+                  <div class="form-floating mb-3 input-with-icon">
+                    <input type="text" class="form-control" id="contactName" placeholder="آپ کا نام" required>
+                    <label for="contactName">آپ کا نام*</label>
+                    <i class="fas fa-user form-control-icon"></i>
+                  </div>
+                  <div class="form-floating mb-3 input-with-icon">
+                    <input type="email" class="form-control" id="contactEmail" placeholder="آپ کا ای میل" required>
+                    <label for="contactEmail">آپ کا ای میل*</label>
+                    <i class="fas fa-envelope form-control-icon"></i>
+                  </div>
+                  <div class="form-floating mb-3 input-with-icon">
+                    <input type="text" class="form-control" id="contactSubject" placeholder="موضوع">
+                    <label for="contactSubject">موضوع</label>
+                    <i class="fas fa-tag form-control-icon"></i>
+                  </div>
+                  <div class="form-floating mb-3 input-with-icon">
+                    <textarea class="form-control" placeholder="آپ کا پیغام" id="contactMessage" style="height: 150px" required></textarea>
+                    <label for="contactMessage">آپ کا پیغام*</label>
+                    <i class="fas fa-pencil-alt form-control-icon"></i>
+                  </div>
+                  <button type="submit" class="btn-submit-contact-form">پیغام بھیجیں <i class="fas fa-paper-plane ms-2"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+              <div class="contact-details-wrapper">
+                <h3>رابطے کی تفصیلات</h3>
+                <div class="contact-detail-item" data-aos="fade-left" data-aos-delay="300">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div>
+                    <strong>پتہ:</strong>
+                    <p>کچہری روڈ، لاہور، پاکستان۔ <br>گورنمنٹ کالج یونیورسٹی لاہور </p>
+                  </div>
+                </div>
+                <div class="contact-detail-item" data-aos="fade-left" data-aos-delay="400">
+                  <i class="fas fa-phone-alt"></i>
+                  <div>
+                    <strong>فون:</strong>
+                    <p>
+                      <a href="tel:+9242111000010">یونیورسل ایکسیس نمبر: 010-000-111 (42) 92+</a>
+                      <br>
+                      <a href="tel:+924299213341">براہ راست: 99213341 (42) 92+</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="contact-detail-item" data-aos="fade-left" data-aos-delay="500">
+                  <i class="fas fa-envelope"></i>
+                  <div>
+                    <strong>ای میل:</strong>
+                    <p>
+                      <a href="mailto:info@gcu.edu.pk">info@gcu.edu.pk</a>
+                      <br>
+                      <a href="mailto:admissions@gcu.edu.pk">admissions@gcu.edu.pk</a> (برائے داخلہ جات)
+                    </p>
+                  </div>
+                </div>
+                <div class="contact-detail-item" data-aos="fade-left" data-aos-delay="600">
+                  <i class="fas fa-clock"></i>
+                  <div>
+                    <strong>دفتر کے اوقات:</strong>
+                    <p>پیر - جمعہ: صبح 9:00 بجے سے شام 5:00 بجے تک</p>
+                  </div>
+                </div>
+                <div class="social-contact-links text-center text-lg-end" data-aos="fade-up" data-aos-delay="700">
+                  <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="map-section" data-aos="fade-in" data-aos-duration="1200">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.070391989975!2d74.3089523155977!3d31.57294198137373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39191b6165651969%3A0x743770277353b058!2sGovernment%20College%20University%20GCU%20Lahore!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+    </div>
+    <!-- Footer (same as other pages) -->
+    <footer class="main-footer">
+      <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                <h5 class="footer-heading">اہم لنکس</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#"><i class="fas fa-dollar-sign fa-fw me-1"></i> مالی امداد</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt fa-fw me-1"></i> پراسپیکٹس</a></li>
+                    <li><a href="about.html"><i class="fas fa-briefcase fa-fw me-1"></i> ملازمت کے مواقع</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <h5 class="footer-heading">فوری لنکس</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#"><i class="fas fa-chair fa-fw me-1"></i> جی سی یو میں چیئرز</a></li>
+                    <li><a href="#"><i class="fas fa-book fa-fw me-1"></i> ڈیجیٹل لائبریری</a></li>
+                    <li><a href="#"><i class="fas fa-users-cog fa-fw me-1"></i> طلباء سوسائٹیز</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <h5 class="footer-heading">معلومات</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#"><i class="far fa-calendar-alt fa-fw me-1"></i> تعلیمی کیلنڈر</a></li>
+                    <li><a href="index.html"><i class="fas fa-list-ol fa-fw me-1"></i> میرٹ لسٹیں</a></li>
+                    <li><a href="#"><i class="far fa-calendar-check fa-fw me-1"></i> ڈیٹ شیٹس</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <h5 class="footer-heading">ہم سے رابطہ کریں</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-2"><i class="fas fa-map-marker-alt"></i> کچہری روڈ، لاہور، پاکستان</li>
+                    <li class="mb-2"><i class="fas fa-phone"></i> <a href="tel:+9242111000010">یونیورسل ایکسیس نمبر: 010-000-111 (42) 92+</a></li>
+                    <li class="mb-2"><i class="fas fa-envelope"></i> <a href="mailto:info@gcu.edu.pk">info@gcu.edu.pk</a></li>
+                </ul>
+                <div class="social-icons mt-3">
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#" target="_blank" title="Twitter" class="mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.2);">
+        <div class="text-center fs-sm">© <span id="currentYearContactUs"></span> گورنمنٹ کالج یونیورسٹی لاہور۔ جملہ حقوق محفوظ ہیں۔ </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <!-- آپ کی مرکزی اسکرپٹ فائل -->
+  </body>
+</html>
